@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Knights Travails</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        function knightMoves(arr1, arr2){
+      function knightMoves(arr1, arr2) {}
 
-        };
+      class Graph {
+        constructor() {
+          this.vertices = [];
+          this.adjacent = {};
+          this.edges=0;
+        }
+        addVertex(v) {
+          this.vertices.push(v);
+          this.adjacent[v] = [];
+        }
+        addEdge(v, w) {
+          this.adjacent[v].push(w);
+          this.adjacent[w].push(v);
+          this.edges++;
+        }
+      }
 
-        //how to represent a graph
-        //adjecency matrix....0's and 1's
+      const g = new Graph();
+
+      g.addVertex("A");
+      g.addVertex("B");
+      g.addVertex("C");
+      g.addVertex("D");
+      g.addVertex("E");
+
+      g.addEdge("A", "B");
+      g.addEdge("A", "C");
+      g.addEdge("A", "D");
+      g.addEdge("B", "C");
+      g.addEdge("B", "D");
+      g.addEdge("C", "D");
+      g.addEdge("D", "E");
+
+      console.log(g);
     </script>
-</body>
+  </body>
 </html>

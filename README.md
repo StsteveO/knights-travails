@@ -3,8 +3,12 @@
 
 [Click here](https://www.theodinproject.com/lessons/javascript-knights-travails) to go to project instructions.
 
+According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
+> Different types of data structures are suited to different kinds of applications, and some are highly specialized to specific tasks. Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms.
+
 + Graphs are important cause they have many applications. They show the relatoionship between two objects, or nodes; also known as VERTEX(singular), or VERTICES (plural). 
 + The relationship between them are shown/represented via line/link, or EDGE(singular) or EDGES(plural).
++ Vertices are adjacent if they are connected by an edge. 
 + Consider the following graph 
 
 ![alt text](https://cdn.kastatic.org/ka-perseus-images/21cd2731928c7c13057eee000e3697de82ccc058.png)
@@ -86,3 +90,10 @@
         
         
         
+##Helpful Sites:
+[Intro to graphs.](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/describing-graphs)
+[How to represent graphs.](https://jarednielsen.com/data-structure-graph-javascript/)
+[Intro to traversing graphs.](https://www.khanacademy.org/computing/computer-science/algorithms/breadth-first-search/a/the-breadth-first-search-algorithm)
+[More on traversing graphs.](https://jarednielsen.com/data-structure-graph-breadth-first-search/)
+
+Special Thanks to Khan Academy, and jarednielsen.com.
