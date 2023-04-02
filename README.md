@@ -2,6 +2,10 @@
 ## The Odin Project: Knights Travails
 
 ### Table of Contents
+[Edge Lists](#edge-list(s))
+[Adjacency Matrices](#adjacency-matrices)
+[Adjacency Lists](#adjacency-lists)
+[Traversal](#traversal!)
 [Healthful Sites](#helpful-sites)
 
 [Click here](https://www.theodinproject.com/lessons/javascript-knights-travails) to go to project instructions.
@@ -95,9 +99,15 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
 + Time to learn how to traverse the graph...finally!
 + How would you traverse this simple graph?
 ![alt text](https://jarednielsen.com/static/1684b319a2c635b5df99e3fdc7227dbc/29007/jarednielsen-data-structure-graph-bfs-a-g.png)
-
 + Unlike binary search tress, graphs dont have any order, specific layout, or specific root. So we can start anywhere.
 + Lets start at `A` to be simple, and go to `G`.
++ How should we initiate the search?
+    + Search all vertices connected to `A`?
+    + Or search *one* of vertices connected to `A` and continue seaerching the verticies connected to that.
++ There are two algorithms used for graph traversal
+    + Breadth-first search (BFS).
+        + 
+    + Depth-firest search (DFS).
 
 ## Helpful Sites:
 
