@@ -90,9 +90,15 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
     E: [`D`]
 }
 ```
-        
-        
-        
+
+## Traversal!
++ Time to learn how to traverse the graph...finally!
++ How would you traverse this simple graph?
+![alt text](https://jarednielsen.com/static/1684b319a2c635b5df99e3fdc7227dbc/29007/jarednielsen-data-structure-graph-bfs-a-g.png)
+
++ Unlike binary search tress, graphs dont have any order, specific layout, or specific root. So we can start anywhere.
++ Lets start at `A` to be simple, and go to `G`.
+
 ## Helpful Sites:
 
 [Intro to graphs.](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/describing-graphs)
@@ -103,6 +109,6 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
 
 [More on traversing graphs.](https://jarednielsen.com/data-structure-graph-breadth-first-search/)
 
-Special Thanks to Khan Academy, and jarednielsen.com.
+Special Thanks to Khan Academy, and jarednielsen.com, for valuable information, and images used. 
 
 [Return to top](#knights-travails)
