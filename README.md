@@ -104,3 +104,5 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
 [More on traversing graphs.](https://jarednielsen.com/data-structure-graph-breadth-first-search/)
 
 Special Thanks to Khan Academy, and jarednielsen.com.
+
+[Return to top](#knights-travails)
