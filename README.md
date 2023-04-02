@@ -42,7 +42,7 @@
 
 ## Adjacency Lists
 + Here is an example of an adjacency matrix.
-1[alt text](https://cdn.kastatic.org/ka-perseus-images/cc82379521bd84738e86d6cf9552738ca9138420.png)
+![alt text](https://cdn.kastatic.org/ka-perseus-images/cc82379521bd84738e86d6cf9552738ca9138420.png)
 + Below is the representation of our data. 
 ```javascript
 [ [1, 6, 8],
@@ -60,6 +60,29 @@
 + Adjacency List total space: Θ(V+E). 
 + Combines edge lists, and adjacency matrices.
 
++ lets look at other examples. 
++ the following is an image and an adjecency list.
+![alt text](https://jarednielsen.com/static/1354cd83ef97d77fb1f1d6a2aa6b45c7/f058b/jarednielsen-data-structure-graph-javascript-sketch.png)
+```javascript
+[
+    [`B`, `C`, `D`],
+    [`A`, `C`, `D`],
+    [`B`, `D`],
+    [`A`, `B`, `C`, `E`],
+    [`D`]
+]
+```
++ One problem. since we are dealing with numbers, and not letters, we need a way to track with vertex correspond with which array.
++ Below is one way to do this. 
+```javascript
+{
+    A: [`B`, `C`, `D`],
+    B: [`A`, `C`, `D`],
+    C: [`B`, `D`],
+    D: [`A`, `B`, `C`, `E`],
+    E: [`D`]
+}
+```
         
         
         
