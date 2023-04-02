@@ -3,12 +3,16 @@
 
 ### Table of Contents
 [Edge Lists](#edge-list(s))
+
 [Adjacency Matrices](#adjacency-matrices)
+
 [Adjacency Lists](#adjacency-lists)
+
 [Traversal](#traversal!)
+
 [Healthful Sites](#helpful-sites)
 
-[Click here](https://www.theodinproject.com/lessons/javascript-knights-travails) to go to project instructions.
+### [Click here](https://www.theodinproject.com/lessons/javascript-knights-travails) to go to project instructions.
 
 According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
 > Different types of data structures are suited to different kinds of applications, and some are highly specialized to specific tasks. Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms.
