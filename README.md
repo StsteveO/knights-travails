@@ -8,7 +8,7 @@
 
 [Adjacency Lists](#adjacency-lists)
 
-[Traversal](#traversal!)
+[Traversal](#traversal)
 
 [Healthful Sites](#helpful-sites)
 
@@ -99,7 +99,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
 }
 ```
 
-## Traversal!
+## Traversal
 + Time to learn how to traverse the graph...finally!
 + How would you traverse this simple graph?
 ![alt text](https://jarednielsen.com/static/1684b319a2c635b5df99e3fdc7227dbc/29007/jarednielsen-data-structure-graph-bfs-a-g.png)
@@ -109,9 +109,20 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Data_structure):
     + Search all vertices connected to `A`?
     + Or search *one* of vertices connected to `A` and continue seaerching the verticies connected to that.
 + There are two algorithms used for graph traversal
-    + Breadth-first search (BFS).
-        + 
-    + Depth-firest search (DFS).
+    + ### Breadth-first search (BFS).
+        + First searches all the edges connected to our chosen vertex before moving on to search the edges of the connected vertices.
+        + BFS can be meathods added to a graph class, like the following:
+```javascript
+    bfs(goal, root=this.vertices[0]) {
+        if (root === goal) {
+            return true;
+        }
+
+        return false;
+    }
+```
+    + ### Depth-firest search (DFS).
+        + First searches the paths of the edges connected to out chosen vertex one at a time until it eaches the end/reaches null, then backtracks to search alternate paths until we found what we are looking for, or arrive back at the start.
 
 ## Helpful Sites:
 

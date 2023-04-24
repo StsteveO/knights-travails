@@ -8,42 +8,292 @@
   </head>
   <body>
     <script>
-      function knightMoves(arr1, arr2) {}
+      //UNDERSTANDING GRAPHS:
+      //create a graph on paper//
+      //represent the graph...I want to use an adjecency list...remember to start with zero, not one.//
+      //give each number a path number(pathCount) and parent (prev) variable//
+      // also add a visited property to indicate if its been added in an arr
+      let starterGraph=()=>{
+      let graph = [
+        // index 0 is [1,2],
+        [
+          { number: 1, pathCount: null, prev: null, visited: false },
+          { number: 2, pathCount: null, prev: null, visited: false },
+        ],
+        // index 1 is [0,2,3],
+        [
+          { number: 0, pathCount: null, prev: null, visited: false },
+          { number: 2, pathCount: null, prev: null, visited: false },
+          { number: 3, pathCount: null, prev: null, visited: false },
+        ],
+        // index 2 is [0,1,3],
+        [
+          { number: 0, pathCount: null, prev: null, visited: false },
+          { number: 1, pathCount: null, prev: null, visited: false },
+          { number: 3, pathCount: null, prev: null, visited: false },
+        ],
+        [
+          // index 3 is [1,2,4,5],
+          { number: 1, pathCount: null, prev: null, visited: false },
+          { number: 2, pathCount: null, prev: null, visited: false },
+          { number: 4, pathCount: null, prev: null, visited: false },
+          { number: 5, pathCount: null, prev: null, visited: false },
+        ],
+        // index 4 is [3],
+        [{ number: 3, pathCount: null, prev: null, visited: false }],
+        // index 5 is [3,6,7],
+        [
+          { number: 3, pathCount: null, prev: null, visited: false },
+          { number: 6, pathCount: null, prev: null, visited: false },
+        ],
+        // index 6 is [5,7,8],
+        [
+          { number: 5, pathCount: null, prev: null, visited: false },
+          { number: 7, pathCount: null, prev: null, visited: false },
+          { number: 8, pathCount: null, prev: null, visited: false },
+        ],
+        // index 7 is [6,8],
+        [
+          { number: 6, pathCount: null, prev: null, visited: false },
+          { number: 8, pathCount: null, prev: null, visited: false },
+        ],
+        // index 8 is [6,7],
+        [
+          { number: 6, pathCount: null, prev: null, visited: false },
+          { number: 7, pathCount: null, prev: null, visited: false },
+        ],
+      ];
+      return graph;
+      };
 
-      class Graph {
-        constructor() {
-          this.vertices = [];
-          this.adjacent = {};
-          this.edges=0;
+      //graph[vertex][connection number].object property
+      //graph.vertex.length===degree of vertex aka number of connections
+      // console.log(graph[0]);
+
+      //create a fxn to give shortest path
+      //fxn thet take starting and ending indexes, as well as the name of the graph
+      //I want result to be actual path and number of moves
+      //set up a queue to keep track of everything
+      function path(start, end, graphName) {
+        let startingVertex = { number: start, pathCount: 0, prev: null, visited: false };
+        let q = [];
+        q.push(startingVertex);
+        let visitedArr=[];
+        visitedArr.push(startingVertex.number);
+        let pathArr = [];
+
+        while (q.length > 0) {
+          //ex. graph[0]= connections
+          graphName[q[0].number].forEach((vertex) => {
+            if(visitedArr.includes(vertex.number)){
+              vertex.visited=true;
+            }
+            if (vertex.visited === false) {
+              vertex.pathCount = q[0].pathCount+1;
+              vertex.prev = q[0] //obj;
+              visitedArr.push(vertex.number);
+              q.push(vertex);
+            }
+          });
+          pathArr.push(q[0]);
+          q.shift();
+          if(pathArr[pathArr.length-1].number===end){
+            break;
+          };
         }
-        addVertex(v) {
-          this.vertices.push(v);
-          this.adjacent[v] = [];
+
+        function outerRecursion(obj){
+          let testArr=[];
+            function recursion(obj){
+              for(let key in obj){
+                if(typeof obj[key]==="object"){
+                  recursion(obj[key]);
+                }
+                if(key==="number"){
+                  testArr.push(` index ${obj[key]}`);
+                }
+              }
+            };
+          recursion(obj);
+          testArr.reverse();
+          let pathOrder= testArr.join(" ->");
+          return pathOrder;
+        };
+        let pathSol=(outerRecursion(pathArr[pathArr.length-1]));
+        return (` You can go from ${start} to ${end}, in ${pathArr[pathArr.length-1].pathCount} step(s).\n${pathSol}\n
+        `);
+      }
+      // console.log(path(8, 4, starterGraph()));
+      // console.log(path(0, 5, starterGraph()));
+      // console.log(path(0, 4, starterGraph()));
+      // console.log(path(3, 0, starterGraph()));
+      //////////////////////////////////////////////
+      function printOut([squareX,squareY]){
+        console.log(`[${squareX}, ${squareY}]`);
+      }
+      // printOut([340,600]);
+      //////////////////////////////////////////////
+      //create a chess square and a fxn that will print all children of a given square
+      class Child{
+        constructor (childX, childY, pathCount=0, prev){
+          this.x_square=childX,
+          this.y_square=childY,
+          this.pathCount=pathCount,
+          this.prev=prev;
         }
-        addEdge(v, w) {
-          this.adjacent[v].push(w);
-          this.adjacent[w].push(v);
-          this.edges++;
+        readOut(){
+          return `[${this.x_square},${this.y_square}]`;
+        }
+        combine(){
+          return (this.x_square).toString()+(this.y_square).toString();
+        }
+        first(){
+          return
         }
       }
+      class SquareInfo{
+        constructor(squareX, squareY, pathCount, prev, visited, comboCode, readOut){
+          this.squareX=squareX,
+          this.squareY=squareY,
+          this.pathCount=pathCount,
+          this.prev=prev,
+          this.visited=visited,
+          this.comboCode=comboCode;
+          this.readOut= `[${this.squareX},${this.squareY}]`;
+        }
+      }
+      
+      function knightMoves([x1,y1],[x2,y2]){
+        if(x1<1 || x1>8 || y1<1 || y1>8 || x2<1 || x2>8 || y2<1 || y2>8){
+          return "Your coordinates go off the board. Please try again.";
+        };
+        // let startingSquare={squareX:x1, squareY:y1, pathCount:0, prev:null, visited:false, comboCode:(Number((x1).toString()+(y1).toString()))};
+        let startingSquare= new SquareInfo(x1,y1,0,null,false,(Number((x1).toString()+(y1).toString())));
+        let q=[];
+        q.push(startingSquare);
+        let visitedSquares=[];
+        visitedSquares.push(startingSquare.comboCode);
+        let path=[];
+        // console.log(q[0]);
 
-      const g = new Graph();
+        while(q.length>0){
+          if(q[0].squareX<1 || q[0].squareX>8 || q[0].squareY<1 || q[0].squareY>8 || q[0].visited===true){
+            q.shift();
+            // return;
+          }
+          // if(visitedSquares.includes(q[0].comboCode)){
+          //   q[0].visited=true;
+          // };
+          if(q[0].visited===false){
+            let nextMove1= new SquareInfo(((q[0].squareX)+1), ((q[0].squareY)+2), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove1.comboCode= (Number((nextMove1.squareX).toString()+(nextMove1.squareY).toString()));
+            if(visitedSquares.includes(nextMove1.comboCode)){nextMove1.visited=true};
+            if(nextMove1.squareX>=1 && nextMove1.squareX<=8 && nextMove1.squareY>=1 && nextMove1.squareY<=8){
+              q.push(nextMove1);
+              visitedSquares.push(nextMove1.comboCode);
+            };
 
-      g.addVertex("A");
-      g.addVertex("B");
-      g.addVertex("C");
-      g.addVertex("D");
-      g.addVertex("E");
+            let nextMove2= new SquareInfo(((q[0].squareX)+2), ((q[0].squareY)+1), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove2.comboCode= (Number((nextMove2.squareX).toString()+(nextMove2.squareY).toString()));
+            if(visitedSquares.includes(nextMove2.comboCode)){nextMove2.visited=true};
+            if(nextMove2.squareX>=1 && nextMove2.squareX<=8 && nextMove2.squareY>=1 && nextMove2.squareY<=8){
+              q.push(nextMove2);
+              visitedSquares.push(nextMove2.comboCode);
+            };
 
-      g.addEdge("A", "B");
-      g.addEdge("A", "C");
-      g.addEdge("A", "D");
-      g.addEdge("B", "C");
-      g.addEdge("B", "D");
-      g.addEdge("C", "D");
-      g.addEdge("D", "E");
+            let nextMove3= new SquareInfo(((q[0].squareX)+2), ((q[0].squareY)-1), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove3.comboCode= (Number((nextMove3.squareX).toString()+(nextMove3.squareY).toString()));
+            if(visitedSquares.includes(nextMove3.comboCode)){nextMove3.visited=true};
+            if(nextMove3.squareX>=1 && nextMove3.squareX<=8 && nextMove3.squareY>=1 && nextMove3.squareY<=8){
+              q.push(nextMove3);
+              visitedSquares.push(nextMove3.comboCode);
+            };
 
-      console.log(g);
+            let nextMove4= new SquareInfo(((q[0].squareX)+1), ((q[0].squareY)-2), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove4.comboCode= (Number((nextMove4.squareX).toString()+(nextMove4.squareY).toString()));
+            if(visitedSquares.includes(nextMove4.comboCode)){nextMove4.visited=true};
+            if(nextMove4.squareX>=1 && nextMove4.squareX<=8 && nextMove4.squareY>=1 && nextMove4.squareY<=8){
+              q.push(nextMove4);
+              visitedSquares.push(nextMove4.comboCode);
+            };
+
+            let nextMove5= new SquareInfo(((q[0].squareX)-1), ((q[0].squareY)-2), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove5.comboCode= (Number((nextMove5.squareX).toString()+(nextMove5.squareY).toString()));
+            if(visitedSquares.includes(nextMove5.comboCode)){nextMove5.visited=true};
+            if(nextMove5.squareX>=1 && nextMove5.squareX<=8 && nextMove5.squareY>=1 && nextMove5.squareY<=8){
+              q.push(nextMove5);
+              visitedSquares.push(nextMove5.comboCode);
+            };
+
+            let nextMove6= new SquareInfo(((q[0].squareX)-2), ((q[0].squareY)-1), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove6.comboCode= (Number((nextMove6.squareX).toString()+(nextMove6.squareY).toString()));
+            if(visitedSquares.includes(nextMove6.comboCode)){nextMove6.visited=true};
+            if(nextMove6.squareX>=1 && nextMove6.squareX<=8 && nextMove6.squareY>=1 && nextMove6.squareY<=8){
+              q.push(nextMove6);
+              visitedSquares.push(nextMove6.comboCode);
+            };
+
+            let nextMove7= new SquareInfo(((q[0].squareX)-2), ((q[0].squareY)+1), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove7.comboCode= (Number((nextMove7.squareX).toString()+(nextMove7.squareY).toString()));
+            if(visitedSquares.includes(nextMove7.comboCode)){nextMove7.visited=true};
+            if(nextMove7.squareX>=1 && nextMove7.squareX<=8 && nextMove7.squareY>=1 && nextMove7.squareY<=8){
+              q.push(nextMove7);
+              visitedSquares.push(nextMove7.comboCode);
+            };
+
+            let nextMove8= new SquareInfo(((q[0].squareX)-1), ((q[0].squareY)+2), ((q[0].pathCount)+1), (q[0]), false);
+            nextMove8.comboCode= (Number((nextMove8.squareX).toString()+(nextMove8.squareY).toString()));
+            if(visitedSquares.includes(nextMove8.comboCode)){nextMove8.visited=true};
+            if(nextMove8.squareX>=1 && nextMove8.squareX<=8 && nextMove8.squareY>=1 && nextMove8.squareY<=8){
+              q.push(nextMove8);
+              visitedSquares.push(nextMove8.comboCode);
+            };
+
+            // path.push(q[0]);
+            // q.shift();
+
+            // if(path[path.length-1].squareX===x2 && path[path.length-1].squareY===y2){
+            //   console.log(path);
+            //   break;
+            // };
+          };
+          if(visitedSquares.includes(q[0].comboCode)){
+            q[0].visited=true;
+          };
+
+          path.push(q[0]);
+          q.shift();
+
+          if(path[path.length-1].squareX===x2 && path[path.length-1].squareY===y2){
+            // console.log(path[path.length-1]);
+            break;
+          };
+        };
+        function outerRecursion(obj){
+          let testArr=[];
+            function recursion(obj){
+              for(let key in obj){
+                if(typeof obj[key]==="object"){
+                  recursion(obj[key]);
+                }
+                if(key==="readOut"){
+                  testArr.push(obj[key]);
+                }
+              }
+            };
+          recursion(obj);
+          // testArr.reverse();
+          let pathOrder= testArr.join(" -> ");
+          return pathOrder;
+        };
+        let solutionPath=(outerRecursion(path[path.length-1]));
+        return(`knightMoves ([${x1},${y1}],[${x2},${y2}])\n\nYou made it in ${(path[path.length-1]).pathCount} move(s)! Here is your path:\n${solutionPath}`)
+      }
+      
+      console.log(knightMoves([3,3],[4,3]));
+      console.log(knightMoves([1,1],[8,10]));
+      console.log(knightMoves([7,1],[8,1]));
+      console.log(knightMoves([1,8],[8,1]));
     </script>
   </body>
 </html>
